@@ -4,15 +4,15 @@ import os
 from utils import get_news_articles, extract_article_details, sentiment_score, text_to_speech
 
 # Initialize Flask App
-app = Flask(__name__, static_folder="static")  # ✅ Enable static folder
-CORS(app)  # ✅ Allow frontend to call backend API
+app = Flask(__name__, static_folder="static")
+CORS(app)  # Enable CORS for frontend-backend communication
 
-# ✅ Serve MP3 files from the static folder
+# Serve MP3 files from the static folder
 @app.route("/static/<path:filename>")
 def serve_static(filename):
     return send_from_directory("static", filename)
 
-# ✅ Fetch News and Process Sentiment & Summarization
+# Fetch News and Process Sentiment & Summarization
 @app.route("/news", methods=["GET"])
 def fetch_news():
     company = request.args.get("company")
@@ -28,7 +28,7 @@ def fetch_news():
     valid_articles_count = 0
 
     for index, article in enumerate(articles):
-        full_text, summary = extract_article_details(article['link'])
+        full_text, summary = extract_article_details(article["link"])
 
         if not full_text or not summary:
             continue  
@@ -37,7 +37,7 @@ def fetch_news():
         if sentiment is None:
             continue  
 
-        # ✅ Generate and store TTS file in static/
+        # Generate and store TTS file in static/
         tts_filename = f"news_summary_{index+1}.mp3"
         mp3_path = text_to_speech(summary, tts_filename)
 
@@ -47,7 +47,7 @@ def fetch_news():
             "summary": summary,
             "sentiment_score": sentiment,
             "sentiment_label": sentiment_label,
-            "audio": f"/static/{tts_filename}"  # ✅ Correct MP3 path
+            "audio": f"/static/{tts_filename}"  # Correct MP3 path
         })
 
         total_sentiment += sentiment
@@ -60,6 +60,6 @@ def fetch_news():
         "articles": processed_articles
     })
 
-# ✅ Run Flask App
+# Run Flask App (Ensuring Docker Compatibility)
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", port=7860)  

@@ -1,0 +1,9 @@
+flask
+flask-cors
+torch
+transformers
+beautifulsoup4
+requests
+deep-translator
+gtts
+gunicorn

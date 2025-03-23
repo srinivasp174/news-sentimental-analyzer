@@ -83,30 +83,6 @@ streamlit run app.py
 | `/news?company=<company>` | GET | Fetches latest news articles and returns sentiment & summaries |
 | `/static/<filename>` | GET | Serves the generated TTS MP3 files |
 
-### **🔍 Example API Response**
-```json
-{
-    "average_sentiment": 3.8,
-    "articles": [
-        {
-            "title": "Company X Stock Surges Amid Market Rally",
-            "link": "https://news.example.com/article1",
-            "summary": "Company X saw a major stock increase today following a market-wide rally...",
-            "sentiment_score": 4,
-            "sentiment_label": "Positive",
-            "audio": "/static/news_summary_1.mp3"
-        },
-        {
-            "title": "Company X Faces New Challenges in Supply Chain",
-            "link": "https://news.example.com/article2",
-            "summary": "Despite recent success, Company X is struggling with supply chain disruptions...",
-            "sentiment_score": 2,
-            "sentiment_label": "Negative",
-            "audio": "/static/news_summary_2.mp3"
-        }
-    ]
-}
-```
 
 ---
 

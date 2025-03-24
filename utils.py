@@ -117,7 +117,7 @@ def translate_text(text):
         print(f'Translation failed: {e}')
         return text
 
-#  Function to Convert Summary to Hindi Speech
+# Function to Convert Summary to Hindi Speech
 STATIC_FOLDER = "static"
 os.makedirs(STATIC_FOLDER, exist_ok=True)
 
@@ -133,7 +133,7 @@ def text_to_speech(summary, filename):
         print(f"TTS failed: {e}")
         return None
 
-#  Enhanced function for better Hindi translation
+# function for Hindi translation
 def translate_text_hindi(text):
     if not text:
         return text
@@ -141,4 +141,4 @@ def translate_text_hindi(text):
         return GoogleTranslator(source='auto', target='hi').translate(text)  
     except Exception as e:
         print(f'Translation failed: {e}')
-        return text  
+        return text

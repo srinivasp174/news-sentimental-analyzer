@@ -2,7 +2,7 @@
 import streamlit as st
 st.set_page_config(page_title="News Sentiment Analysis", layout="wide")
 
-# Import utilities from your original utils.py
+# Import utilities from utils.py
 from utils import (
     get_news_articles,
     extract_article_details,
